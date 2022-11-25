@@ -2,10 +2,12 @@ import { ADD_MOVIES, ADD_TO_FAVOURITES, REMOVE_FROM_FAVOURITES, SET_SHOW_FAVOURI
 
 const initialMoviesState = {
     list: [],
-    favourites: []
+    favourites: [],
+    showFavourites: false
 }
 
-export default function movies (state= initialMoviesState, action){
+export function movies (state= initialMoviesState, action){
+    console.log('MOVIES REDUCER');
     // In React Community, we avaoid using If-Else. Instead, we use Switch Case.
     // if(action.type === ADD_MOVIES){
     //     // return action.movies;
@@ -44,6 +46,25 @@ export default function movies (state= initialMoviesState, action){
             }
         default:
             return state;
+    }
+};
+
+const initialSearchState = {
+    result: {}
+};
+export function search (state=initialSearchState, action){
+    console.log('SEARCH REDUCER');
+    return state;
+}
+
+const initialRootState = {
+    movies: initialMoviesState,
+    search: initialSearchState
+}
+export default function rootReducer(state = initialRootState, action){
+    return {
+        movies: movies(state.movies, action),
+        search: search( state.search, action)
     }
 }
 
