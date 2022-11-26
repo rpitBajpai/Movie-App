@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import { 
-    ADD_MOVIES, 
-    ADD_TO_FAVOURITES, 
-    REMOVE_FROM_FAVOURITES, 
+import {
+    ADD_MOVIES,
+    ADD_TO_FAVOURITES,
+    REMOVE_FROM_FAVOURITES,
     SET_SHOW_FAVOURITES,
     ADD_MOVIE_TO_LIST,
     ADD_SEARCH_RESULT,
@@ -15,7 +15,7 @@ const initialMoviesState = {
     showFavourites: false
 }
 
-export function movies (state= initialMoviesState, action){
+export function movies(state = initialMoviesState, action) {
     console.log('MOVIES REDUCER');
     // In React Community, we avaoid using If-Else. Instead, we use Switch Case.
     // if(action.type === ADD_MOVIES){
@@ -25,20 +25,20 @@ export function movies (state= initialMoviesState, action){
     //     ...state,
     //     list: action.movies
     //     }
-        
+
     // }
     // return state;
 
-    switch(action.type){
+    switch (action.type) {
         case ADD_MOVIES:
-            return{
+            return {
                 ...state,
                 list: action.movies
             };
         case ADD_TO_FAVOURITES:
-            return{
+            return {
                 ...state,
-                favourites: [action.movie,  ...state.favourites]
+                favourites: [action.movie, ...state.favourites]
             };
         case REMOVE_FROM_FAVOURITES:
             const filteredArray = state.favourites.filter(
@@ -69,21 +69,21 @@ const initialSearchState = {
 };
 export function search(state = initialSearchState, action) {
     switch (action.type) {
-      case ADD_SEARCH_RESULT:
-        return {
-          ...state,
-          result: action.movie,
-          showSearchResults: true,
-        };
-      case ADD_MOVIE_TO_LIST:
-        return {
-          ...state,
-          showSearchResults: false,
-        };
-      default:
-        return state;
+        case ADD_SEARCH_RESULT:
+            return {
+                ...state,
+                result: action.movie,
+                showSearchResults: true,
+            };
+        case ADD_MOVIE_TO_LIST:
+            return {
+                ...state,
+                showSearchResults: false,
+            };
+        default:
+            return state;
     }
-  }
+}
 
 const initialRootState = {
     movies: initialMoviesState,
